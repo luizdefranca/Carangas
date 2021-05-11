@@ -60,6 +60,7 @@ class Rest {
                         cars.forEach { car in 
                             print(car.name)
                         }
+                        onComplete(cars)
 
                     } catch {
                         // algum erro ocorreu com os dados

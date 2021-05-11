@@ -12,14 +12,13 @@ class CarsTableViewController: UITableViewController {
 
     //MARK: - Proprieties
     var cars = [Car]()
+    
     //MARK: - Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        Rest.loadCars(onComplete: { cars in
-            dump(cars)
-        }, onError: { error in
-            print(error)
-        })
+        tableView.dataSource = self
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -27,6 +26,10 @@ class CarsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    //MARK: - User Functions
+    override func viewWillAppear(_ animated: Bool) {
+        fetchCars()
+    }
 
 
     // MARK: - Table view data source
@@ -36,15 +39,29 @@ class CarsTableViewController: UITableViewController {
         return cars.count
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+    fileprivate func fetchCars() {
+        Rest.loadCars(onComplete: { cars in
+            dump(cars)
+            self.cars = cars
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }, onError: { error in
+            print(error)
+        })
+    }
 
-        // Configure the cell...
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = cars[indexPath.row].name
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
