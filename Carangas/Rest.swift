@@ -8,6 +8,15 @@
 
 import Foundation
 
+enum CarError {
+    case url
+    case taskError(error: Error)
+    case noResponse
+    case noData
+    case responseStatusCode(code: Int)
+    case invalidJSON
+}
+
 class Rest {
 
     private static let basePath = "https://carangas.herokuapp.com/cars"
@@ -24,9 +33,13 @@ class Rest {
         return config
     }()
 
-    func loadCars() {
+    class func loadCars(onComplete: @escaping([Car]) -> Void, onError: @escaping (CarError) -> Void) {
 
-        guard let url = URL(string: Rest.basePath) else {return}
+        var cars = [Car]()
+        guard let url = URL(string: Rest.basePath) else {
+            onError(CarError.url)
+            return
+        }
 
         // tarefa criada, mas nao processada
         Rest.session.dataTask(with: url) { (data: Data?,
@@ -36,10 +49,13 @@ class Rest {
             if error == nil {
                 guard let response = response as? HTTPURLResponse else {return}
                 if response.statusCode == 200 {
-                    guard let data = data else {return}
+                    guard let data = data else {
+                        onError(.noData)
+                        return
+                    }
 
                     do {
-                        let cars = try JSONDecoder().decode([Car].self, from: data)
+                        cars = try JSONDecoder().decode([Car].self, from: data)
 
                         cars.forEach { car in 
                             print(car.name)
@@ -47,17 +63,19 @@ class Rest {
 
                     } catch {
                         // algum erro ocorreu com os dados
+                        onError(.invalidJSON)
                         print(error.localizedDescription)
                     }
                 } else {
                     print("Algum status inválido(-> \(response.statusCode) <-) pelo servidor!! ")
                 }
             } else {
+                onError(.taskError(error: error!))
                 print(error.debugDescription)
             }
 
         }.resume()
 
-
+    
     }
 }

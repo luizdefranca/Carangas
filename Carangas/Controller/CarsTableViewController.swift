@@ -11,10 +11,15 @@ import UIKit
 class CarsTableViewController: UITableViewController {
 
     //MARK: - Proprieties
-    
+    var cars = [Car]()
+    //MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Rest.loadCars(onComplete: { cars in
+            dump(cars)
+        }, onError: { error in
+            print(error)
+        })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -22,21 +27,13 @@ class CarsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return cars.count
     }
 
     /*
