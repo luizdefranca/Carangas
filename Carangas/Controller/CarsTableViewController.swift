@@ -10,6 +10,8 @@ import UIKit
 
 class CarsTableViewController: UITableViewController {
 
+    //MARK: - Proprieties
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
