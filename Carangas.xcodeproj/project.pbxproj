@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2581D78D2649FCB600D22F04 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581D78C2649FCB600D22F04 /* Car.swift */; };
 		2581D7922649FFB600D22F04 /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581D7912649FFB600D22F04 /* Rest.swift */; };
+		25F48FCB264C757F00276423 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F48FCA264C757F00276423 /* Brand.swift */; };
 		A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B18D041F9C1BDD00313110 /* AppDelegate.swift */; };
 		A1B18D0A1F9C1BDD00313110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B18D081F9C1BDD00313110 /* Main.storyboard */; };
 		A1B18D0C1F9C1BDD00313110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B18D0B1F9C1BDD00313110 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		2581D78C2649FCB600D22F04 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2581D7912649FFB600D22F04 /* Rest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
+		25F48FCA264C757F00276423 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		A1B18D011F9C1BDD00313110 /* Carangas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carangas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B18D041F9C1BDD00313110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1B18D091F9C1BDD00313110 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				A1B18D0D1F9C1BDD00313110 /* LaunchScreen.storyboard */,
 				A1B18D101F9C1BDD00313110 /* Info.plist */,
 				2581D78C2649FCB600D22F04 /* Car.swift */,
+				25F48FCA264C757F00276423 /* Brand.swift */,
 				2581D7912649FFB600D22F04 /* Rest.swift */,
 			);
 			path = Carangas;
@@ -160,6 +163,7 @@
 				A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */,
 				2581D78D2649FCB600D22F04 /* Car.swift in Sources */,
 				2581D7922649FFB600D22F04 /* Rest.swift in Sources */,
+				25F48FCB264C757F00276423 /* Brand.swift in Sources */,
 				A1B18D191F9C1DBA00313110 /* AddEditViewController.swift in Sources */,
 				A1B18D1B1F9C1DCF00313110 /* CarViewController.swift in Sources */,
 			);

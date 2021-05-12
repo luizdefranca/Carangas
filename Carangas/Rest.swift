@@ -8,14 +8,32 @@
 
 import Foundation
 
-enum CarError {
+enum RestError: Error, CustomStringConvertible {
     case url
     case taskError(error: Error)
     case noResponse
     case noData
     case responseStatusCode(code: Int)
     case invalidJSON
+
+    public var description: String {
+        switch self {
+            case .url:
+                return "Invalid url"
+            case .taskError(error: let error):
+                return "Error running task - \(error)"
+            case .noResponse:
+                return "Request without response"
+            case .noData:
+                return "No valid data"
+            case .responseStatusCode(code: let code):
+                return "Invalid status code - \(code)"
+            case .invalidJSON:
+                return "Can't convert JSON"
+        }
+    }
 }
+
 
 enum RESTOperation: String {
     case save = "SAVE"
@@ -24,10 +42,11 @@ enum RESTOperation: String {
 }
 
 class Rest {
-    
+
+    //MARK: Proprieties
     private static let basePath = "https://carangas.herokuapp.com/cars"
-    
-    // session criada automaticamente e disponivel para reusar
+    private static let urlFipe = "https://fipeapi.appspot.com/api/1/carros/marcas.json"
+
     private static let session = URLSession(configuration: configuration)
     
     private static let configuration: URLSessionConfiguration = {
@@ -39,11 +58,11 @@ class Rest {
         return config
     }()
     
-    class func loadCars(onComplete: @escaping([Car]) -> Void, onError: @escaping (CarError) -> Void) {
+    class func loadCars(onComplete: @escaping([Car]) -> Void, onError: @escaping (RestError) -> Void) {
         
         var cars = [Car]()
         guard let url = URL(string: Rest.basePath) else {
-            onError(CarError.url)
+            onError(RestError.url)
             return
         }
         
@@ -200,7 +219,24 @@ class Rest {
                 onComplete(false)
             }
         }.resume()
+    }
 
+    class func loadBrands(onComplete: @escaping ([Brand]?) -> Void, onError: @escaping (RestError)-> Void){
 
+        guard let url = URL(string: urlFipe) else {
+            onError(.url)
+            return
+        }
+        session.dataTask(with: url) { (data, response, error) in
+
+            if error != nil {
+
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    onComplete(nil)
+                    return
+                }
+            }
+
+        }
     }
 }
