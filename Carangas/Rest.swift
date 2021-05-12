@@ -17,10 +17,10 @@ enum CarError {
     case invalidJSON
 }
 
-enum RESTOperation {
-    case save
-    case update
-    case delete
+enum RESTOperation: String {
+    case save = "SAVE"
+    case update = "UPDATE"
+    case delete = "DELETE"
 }
 
 class Rest {
@@ -87,6 +87,8 @@ class Rest {
    //TODO: Refactory
     
     class func save(car: Car, onComplete: @escaping (Bool) -> Void){
+        applyOperation(car: car, operation: .save, onComplete: onComplete)
+/*
         guard let url = URL(string: basePath) else {
             onComplete(false)
             return
@@ -117,11 +119,14 @@ class Rest {
             }
         }
         dataTask.resume()
+
+ */
     }
 
 
     class func update(car: Car, onComplete: @escaping (Bool) -> Void ) {
-
+        applyOperation(car: car, operation: .update, onComplete: onComplete)
+        /*
         // 1 -- bloco novo: o endpoint do servidor para UPDATE é: URL/id
         let urlString = basePath + "/" + car._id!
 
@@ -151,11 +156,51 @@ class Rest {
             }
         }
         dataTask.resume()
+ */
+
+    }
+
+    class func delete(car: Car, onComplete: @escaping (Bool) -> Void) {
+        applyOperation(car: car, operation: .delete, onComplete: onComplete)
     }
 
     private class func applyOperation(car: Car, operation: RESTOperation , onComplete: @escaping (Bool) -> Void ) {
 
-      // 1
+        let urlString = basePath + "/" + (car._id ?? "")
+        var request = URLRequest(url: URL(string: urlString)!)
+        var httpMethod = ""
+
+        switch operation {
+            case .delete:
+                httpMethod = RESTOperation.delete.rawValue
+                print("Delete Method")
+            case .save:
+                print("Save Method")
+                httpMethod = RESTOperation.save.rawValue
+            case .update:
+                print("Update Method")
+                httpMethod = RESTOperation.update.rawValue
+        }
+
+        request.httpMethod = httpMethod
+
+
+        session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            if error == nil {
+                // verificar e desembrulhar em uma unica vez
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200, let _ = data else {
+                    onComplete(false)
+                    return
+                }
+
+                // ok
+                onComplete(true)
+
+            } else {
+                onComplete(false)
+            }
+        }.resume()
+
 
     }
 }
