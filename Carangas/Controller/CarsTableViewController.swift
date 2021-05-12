@@ -11,7 +11,7 @@ import UIKit
 class CarsTableViewController: UITableViewController {
 
     //MARK: - Proprieties
-    var cars = [Car]()
+    var cars : [Car] = [Car]()
     
     //MARK: - Lifecycle Methods
 
@@ -61,6 +61,14 @@ class CarsTableViewController: UITableViewController {
 
         return cell
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "viewSegue", let vc = segue.destination as? CarViewController {
+            guard let index = tableView.indexPathsForSelectedRows?.first?.row else {return}
+            vc.car = cars[index]
+        }
+    }
+
     
 
     /*
