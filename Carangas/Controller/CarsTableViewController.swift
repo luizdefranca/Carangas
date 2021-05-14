@@ -52,10 +52,32 @@ class CarsTableViewController: UITableViewController {
                 }
             }
 
-
-
         }, onError: { error in
-            print(error)
+            var response: String = ""
+
+            switch error {
+                case .invalidJSON:
+                    response = "invalidJSON"
+                case .noData:
+                    response = "noData"
+                case .noResponse:
+                    response = "noResponse"
+                case .url:
+                    response = "JSON inválido"
+                case .taskError(let error):
+                    response = "\(error.localizedDescription)"
+                case .responseStatusCode(let code):
+                    if code != 200 {
+                        response = "Algum problema com o servidor. :( \nError:\(code)"
+                }
+            }
+
+            DispatchQueue.main.async {
+                self.label.text = response
+                self.tableView.backgroundView = self.label
+                print(response)
+            }
+            print(response)
         })
     }
 
