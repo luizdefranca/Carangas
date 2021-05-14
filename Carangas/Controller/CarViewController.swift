@@ -2,6 +2,7 @@
 //  Carangas
 
 import UIKit
+import WebKit
 
 class CarViewController: UIViewController {
 
@@ -12,6 +13,8 @@ class CarViewController: UIViewController {
     @IBOutlet weak var lbBrand: UILabel!
     @IBOutlet weak var lbGasType: UILabel!
     @IBOutlet weak var lbPrice: UILabel!
+    @IBOutlet weak var aivLoading: UIActivityIndicatorView!
+    @IBOutlet weak var webView: WKWebView!
 
     // MARK: - Super Methods
     override func viewDidLoad() {
