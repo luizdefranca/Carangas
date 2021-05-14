@@ -60,7 +60,7 @@ class Rest {
                         return
                     }
                     onError(.noData)
-                    print(RestError.noData.description)
+                    print(RestError.noData.localizedDescription)
                     return
 
                     do {

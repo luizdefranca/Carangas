@@ -72,24 +72,12 @@ class AddEditViewController: UIViewController {
         car.price = Double(tfPrice.text!) ?? 0.0
         car.gasType = scGasType.selectedSegmentIndex
 
-        if car._id == nil {
-            // new car
-            Rest.save(car: car) { success in
-                print("Car saved: \(success)")
-                self.goBack()
-            }
+        if let _ = car._id  {
+            updateCar()
         } else {
-            // 2 - edit current car
-            Rest.update(car: car) { success in
-                print("Car updated: \(success)")
-                self.goBack()
-            }
-
+            addCar()
         }
-//
-//        Rest.save(car: car) { (success) in
-//            self.goBack()
-//        }
+
     }
 
     @objc fileprivate func cancel() {
@@ -99,6 +87,37 @@ class AddEditViewController: UIViewController {
     @objc fileprivate func done() {
         tfBrand.text = brands[pickerView.selectedRow(inComponent: 0)].fipeName
         cancel()
+    }
+
+
+    fileprivate func addCar() {
+
+        startLoadingAnimation()
+
+        // new car
+        Rest.save(car: car) { (success) in
+            if success {
+                self.goBack()
+            } else {
+                // mostrar um erro generico
+                self.showAlert(withTitle: "Adicionar", withMessage: "Não foi possível adicionar o carro.", isTryAgain: true, operation: .add_car)
+            }
+
+        }
+    }
+
+    fileprivate func updateCar() {
+
+        startLoadingAnimation()
+
+        // 2 - edit current car
+        Rest.update(car: car) { (success) in
+            if success {
+                self.goBack()
+            } else {
+                self.showAlert(withTitle: "Editar", withMessage: "Não foi possível editar o carro.", isTryAgain: true, operation: .edit_car)
+            }
+        }
     }
 
     fileprivate func addToolBar() {
@@ -134,6 +153,57 @@ class AddEditViewController: UIViewController {
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+
+    fileprivate func showAlert(withTitle titleMessage: String, withMessage message: String, isTryAgain hasRetry: Bool, operation oper: CarOperationAction) {
+
+        if oper != .get_brands {
+            DispatchQueue.main.async {
+                self.stopLoadingAnimation()
+            }
+
+        }
+
+        let alert = UIAlertController(title: titleMessage, message: message, preferredStyle: .actionSheet)
+
+        if hasRetry {
+            let tryAgainAction = UIAlertAction(title: "Tentar novamente", style: .default, handler: {(action: UIAlertAction) in
+
+                switch oper {
+                    case .add_car:
+                        self.addCar()
+                    case .edit_car:
+                        self.updateCar()
+                    case .get_brands:
+                        self.loadBrands()
+                }
+
+            })
+            alert.addAction(tryAgainAction)
+
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: {(action: UIAlertAction) in
+                self.goBack()
+            })
+            alert.addAction(cancelAction)
+        }
+
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    func startLoadingAnimation() {
+        self.btAddEdit.isEnabled = false
+        self.btAddEdit.backgroundColor = .gray
+        self.btAddEdit.alpha = 0.5
+        self.loading.startAnimating()
+    }
+
+    func stopLoadingAnimation() {
+        self.btAddEdit.isEnabled = true
+        self.btAddEdit.backgroundColor = UIColor(named: "main")
+        self.btAddEdit.alpha = 0
+        self.loading.stopAnimating()
     }
 } //End AddEditViewController
 

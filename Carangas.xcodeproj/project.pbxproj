@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		2581D7922649FFB600D22F04 /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581D7912649FFB600D22F04 /* Rest.swift */; };
 		25CF0F7B264DFE0B00482214 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF0F7A264DFE0A00482214 /* RestProtocol.swift */; };
 		25CF0F7E264E024300482214 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF0F7D264E024300482214 /* RestError.swift */; };
+		25CF0F82264E090200482214 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 25CF0F81264E090200482214 /* Alamofire */; };
 		25F48FCB264C757F00276423 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F48FCA264C757F00276423 /* Brand.swift */; };
 		A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B18D041F9C1BDD00313110 /* AppDelegate.swift */; };
 		A1B18D0A1F9C1BDD00313110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B18D081F9C1BDD00313110 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25CF0F82264E090200482214 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +143,9 @@
 			dependencies = (
 			);
 			name = Carangas;
+			packageProductDependencies = (
+				25CF0F81264E090200482214 /* Alamofire */,
+			);
 			productName = Carangas;
 			productReference = A1B18D011F9C1BDD00313110 /* Carangas.app */;
 			productType = "com.apple.product-type.application";
@@ -170,6 +175,9 @@
 				Base,
 			);
 			mainGroup = A1B18CF81F9C1BDD00313110;
+			packageReferences = (
+				25CF0F80264E090200482214 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = A1B18D021F9C1BDD00313110 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -333,7 +341,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -346,7 +355,10 @@
 				DEVELOPMENT_TEAM = 489ZVWUGPK;
 				INFOPLIST_FILE = Carangas/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luizramos.carangas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -362,7 +374,10 @@
 				DEVELOPMENT_TEAM = 489ZVWUGPK;
 				INFOPLIST_FILE = Carangas/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luizramos.carangas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -392,6 +407,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		25CF0F80264E090200482214 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		25CF0F81264E090200482214 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 25CF0F80264E090200482214 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1B18CF91F9C1BDD00313110 /* Project object */;
 }
