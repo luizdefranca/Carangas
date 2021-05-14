@@ -25,8 +25,9 @@ class CarsTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(fetchCars), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -35,13 +36,24 @@ class CarsTableViewController: UITableViewController {
     //MARK: - User Functions
 
 
-    fileprivate func fetchCars() {
+    @objc fileprivate func fetchCars() {
         Rest.loadCars(onComplete: { cars in
-            dump(cars)
+
             self.cars = cars
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            if cars.count == 0 {
+                DispatchQueue.main.async {
+                    self.label.text = "No loaded data..."
+                    self.tableView.backgroundView = self.label
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
+                    self.tableView.reloadData()
+                }
             }
+
+
+
         }, onError: { error in
             print(error)
         })
