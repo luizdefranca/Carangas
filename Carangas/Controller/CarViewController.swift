@@ -1,10 +1,5 @@
-//
 //  CarViewController.swift
 //  Carangas
-//
-//  Created by Eric Brito on 21/10/17.
-//  Copyright © 2017 Eric Brito. All rights reserved.
-//
 
 import UIKit
 

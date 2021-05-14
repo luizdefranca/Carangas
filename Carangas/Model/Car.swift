@@ -1,10 +1,7 @@
-//
 //  Car.swift
 //  Carangas
 //
 //  Created by Luiz on 5/10/21.
-//  Copyright © 2021 Eric Brito. All rights reserved.
-//
 
 import Foundation
 

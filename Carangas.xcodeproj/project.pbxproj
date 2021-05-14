@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2581D78D2649FCB600D22F04 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581D78C2649FCB600D22F04 /* Car.swift */; };
 		2581D7922649FFB600D22F04 /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581D7912649FFB600D22F04 /* Rest.swift */; };
+		25CF0F7B264DFE0B00482214 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF0F7A264DFE0A00482214 /* RestProtocol.swift */; };
+		25CF0F7E264E024300482214 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF0F7D264E024300482214 /* RestError.swift */; };
 		25F48FCB264C757F00276423 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F48FCA264C757F00276423 /* Brand.swift */; };
 		A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B18D041F9C1BDD00313110 /* AppDelegate.swift */; };
 		A1B18D0A1F9C1BDD00313110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B18D081F9C1BDD00313110 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		2581D78C2649FCB600D22F04 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2581D7912649FFB600D22F04 /* Rest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
+		25CF0F7A264DFE0A00482214 /* RestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProtocol.swift; sourceTree = "<group>"; };
+		25CF0F7D264E024300482214 /* RestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestError.swift; sourceTree = "<group>"; };
 		25F48FCA264C757F00276423 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		A1B18D011F9C1BDD00313110 /* Carangas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carangas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B18D041F9C1BDD00313110 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +59,42 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		25CF0F70264DAFF400482214 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2581D78C2649FCB600D22F04 /* Car.swift */,
+				25F48FCA264C757F00276423 /* Brand.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25CF0F74264DB00D00482214 /* App and Scene Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				A1B18D041F9C1BDD00313110 /* AppDelegate.swift */,
+			);
+			path = "App and Scene Delegates";
+			sourceTree = "<group>";
+		};
+		25CF0F76264DB03600482214 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A1B18D081F9C1BDD00313110 /* Main.storyboard */,
+				A1B18D0D1F9C1BDD00313110 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		25CF0F77264DB05C00482214 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2581D7912649FFB600D22F04 /* Rest.swift */,
+				25CF0F7D264E024300482214 /* RestError.swift */,
+				25CF0F7A264DFE0A00482214 /* RestProtocol.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		A1B18CF81F9C1BDD00313110 = {
 			isa = PBXGroup;
 			children = (
@@ -74,15 +114,13 @@
 		A1B18D031F9C1BDD00313110 /* Carangas */ = {
 			isa = PBXGroup;
 			children = (
-				A1B18D041F9C1BDD00313110 /* AppDelegate.swift */,
+				25CF0F74264DB00D00482214 /* App and Scene Delegates */,
 				2581D7902649FF5800D22F04 /* Controller */,
-				A1B18D081F9C1BDD00313110 /* Main.storyboard */,
+				25CF0F76264DB03600482214 /* Storyboard */,
+				25CF0F70264DAFF400482214 /* Model */,
+				25CF0F77264DB05C00482214 /* Network */,
 				A1B18D0B1F9C1BDD00313110 /* Assets.xcassets */,
-				A1B18D0D1F9C1BDD00313110 /* LaunchScreen.storyboard */,
 				A1B18D101F9C1BDD00313110 /* Info.plist */,
-				2581D78C2649FCB600D22F04 /* Car.swift */,
-				25F48FCA264C757F00276423 /* Brand.swift */,
-				2581D7912649FFB600D22F04 /* Rest.swift */,
 			);
 			path = Carangas;
 			sourceTree = "<group>";
@@ -162,8 +200,10 @@
 				A1B18D171F9C1D7E00313110 /* CarsTableViewController.swift in Sources */,
 				A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */,
 				2581D78D2649FCB600D22F04 /* Car.swift in Sources */,
+				25CF0F7E264E024300482214 /* RestError.swift in Sources */,
 				2581D7922649FFB600D22F04 /* Rest.swift in Sources */,
 				25F48FCB264C757F00276423 /* Brand.swift in Sources */,
+				25CF0F7B264DFE0B00482214 /* RestProtocol.swift in Sources */,
 				A1B18D191F9C1DBA00313110 /* AddEditViewController.swift in Sources */,
 				A1B18D1B1F9C1DCF00313110 /* CarViewController.swift in Sources */,
 			);
