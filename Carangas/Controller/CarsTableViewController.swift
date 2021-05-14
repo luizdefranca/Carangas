@@ -7,32 +7,33 @@ class CarsTableViewController: UITableViewController {
 
     //MARK: - Proprieties
     var cars : [Car] = [Car]()
+
+    var label: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = UIColor(named: "main")
+        return label
+    }()
     
     //MARK: - Lifecycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        label.text = "Loading data..."
 
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+         self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    //MARK: - User Functions
     override func viewWillAppear(_ animated: Bool) {
         fetchCars()
     }
+    //MARK: - User Functions
 
-
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return cars.count
-    }
 
     fileprivate func fetchCars() {
         Rest.loadCars(onComplete: { cars in
@@ -46,14 +47,29 @@ class CarsTableViewController: UITableViewController {
         })
     }
 
+
+    // MARK: - Table view data source
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        if cars.count == 0 {
+            self.tableView.backgroundView = self.label
+        } else {
+            self.label.text = ""
+            self.tableView.backgroundView = nil
+        }
+        return cars.count
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = cars[indexPath.row].name
-
+        let car = cars[indexPath.row]
+        cell.textLabel?.text = car.name
+        cell.detailTextLabel?.text = car.brand
         return cell
     }
 
