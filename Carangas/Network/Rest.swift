@@ -59,9 +59,6 @@ class Rest {
                         onError(.noData)
                         return
                     }
-                    onError(.noData)
-                    print(RestError.noData.localizedDescription)
-                    return
 
                     do {
                         cars = try JSONDecoder().decode([Car].self, from: data)
