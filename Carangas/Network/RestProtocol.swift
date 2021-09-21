@@ -10,11 +10,11 @@ import Foundation
 
 protocol RestProtocol {
 
-    static func save<T:Encodable> (object: T, onComplete: @escaping (Result< Void , RestError>) -> Void)
-    static func update<T:Encodable> (object: T, onComplete: @escaping (Result< Void , RestError>) -> Void)
-    static func delete<T:Encodable> (object: T, onComplete: @escaping (Result< Void , RestError>) -> Void)
-    static func fetchData<T: Codable>(onComplete: @escaping(Result<T, RestError>) -> Void )
-    static func fetchCars<Car: Codable>(onComplete: @escaping(Result<Car, RestError>) -> Void )
-    static func fetchBrands<Brand: Codable>(onComplete: @escaping(Result<Brand, RestError>) -> Void )
+    func save(car: Car, onComplete: @escaping (Result<Void, RestError>) -> Void)
+    func update(car: Car, onComplete: @escaping (Result<Void, RestError>) -> Void)
+    func delete(car: Car, onComplete: @escaping (Result<Void, RestError>) -> Void)
+//  func fetchData<T: Codable>(onComplete: @escaping(Result<T, RestError>) -> Void )
+    func fetchCars(onComplete: @escaping(Result<[Car], RestError>) -> Void )
+    func fetchBrands(onComplete: @escaping(Result<[Brand], RestError>) -> Void )
     
 }

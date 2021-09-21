@@ -15,10 +15,13 @@ class CarsTableViewController: UITableViewController {
         return label
     }()
     
+    var connection : RestProtocol!
+    
     //MARK: - Lifecycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        connection = AFRest.shared
         tableView.dataSource = self
         label.text = "Loading data..."
 
@@ -31,54 +34,44 @@ class CarsTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        fetchCars()
+        super.viewWillAppear(animated)
+        self.fetchCars()
+        
     }
     //MARK: - User Functions
 
 
     @objc fileprivate func fetchCars() {
-        Rest.loadCars(onComplete: { cars in
-
-            self.cars = cars
-            if cars.count == 0 {
-                DispatchQueue.main.async {
-                    self.label.text = "No loaded data..."
-                    self.tableView.backgroundView = self.label
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.refreshControl?.endRefreshing()
-                    self.tableView.reloadData()
-                }
-            }
-
-        }, onError: { error in
-            var response: String = ""
-
-            switch error {
-                case .invalidJSON:
-                    response = "invalidJSON"
-                case .noData:
-                    response = "noData"
-                case .noResponse:
-                    response = "noResponse"
-                case .url:
-                    response = "JSON inválido"
-                case .taskError(let error):
-                    response = "\(error.localizedDescription)"
-                case .responseStatusCode(let code):
-                    if code != 200 {
-                        response = "Algum problema com o servidor. :( \nError:\(code)"
+        
+        
+        connection.fetchCars { response in
+            switch response {
+                case .success(let cars):
+                    
+                    self.cars = cars
+                    if cars.count == 0 {
+                        DispatchQueue.main.async {
+                            self.label.text = "No loaded data..."
+                            self.tableView.backgroundView = self.label
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.refreshControl?.endRefreshing()
+                            self.tableView.reloadData()
+                        }
+                    }
+                    
+                case .failure(let error): do {
+                    DispatchQueue.main.async {
+                        self.label.text = error.description
+                        self.tableView.backgroundView = self.label
+                        print(response)
+                    }
+                    print(response)
                 }
             }
-
-            DispatchQueue.main.async {
-                self.label.text = response
-                self.tableView.backgroundView = self.label
-                print(response)
-            }
-            print(response)
-        })
+        }
+       
     }
 
 
@@ -119,13 +112,18 @@ class CarsTableViewController: UITableViewController {
             // Delete the row from the data source
             let row = indexPath.row
             let car = cars[row]
-            Rest.delete(car: car) { success in
-                if success {
+            connection.delete(car: car) { response in
+               
+                switch response {
+                case .success():
                     self.cars.remove(at: row)
                     DispatchQueue.main.async {
                         tableView.deleteRows(at: [indexPath], with: .fade)
                     }
-                }
+                
+                    //TODO: fazer mensage ao usario
+                case .failure(let error) :
+                    print(error.description)
             }
 
         }
@@ -172,4 +170,5 @@ class CarsTableViewController: UITableViewController {
      }
      */
 
+}
 }

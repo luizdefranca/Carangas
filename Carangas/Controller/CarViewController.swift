@@ -42,8 +42,10 @@ class CarViewController: UIViewController {
     fileprivate func showCarOnWebKit() {
 
         let name = (car.name + "+" + car.brand).replacingOccurrences(of: " ", with: "+")
-        let urlString = "https://www.google.com.br/search?q=\(name)&tbm=isch"
-        let url = URL(string: urlString)!
+        let scappedName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlString = "https://www.google.com.br/search?q=\(scappedName)&tbm=isch"
+       
+        guard let url = URL(string: urlString) else {return}
         let request = URLRequest(url: url)
 
         // permite usar usar gestos para navegar

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Alamofire
+
 
 enum RestError: Error, CustomStringConvertible {
     case url
@@ -15,21 +17,25 @@ enum RestError: Error, CustomStringConvertible {
     case noData
     case responseStatusCode(code: Int)
     case invalidJSON
-
+    case alamofireError(description: String)
+    
     public var description: String {
         switch self {
-            case .url:
-                return "Error Found : URL error."
-            case .taskError(error: let error):
-                return "Error Found : The Data Task object failed. Error: \(error)"
-            case .noResponse:
-                return "Error Found : Request without response"
-            case .noData:
-                return "Error Found : The data from API is Nil."
-            case .responseStatusCode(code: let code):
-                return "Error Found : Invalid status code - \(code)"
-            case .invalidJSON:
-                return "Error Found : Unable to parse the JSON response"
+        case .url:
+            return "Error Found : Invalid url."
+        case .taskError(error: let error):
+            return "Error Found : The Data Task object failed. Error: \(error)"
+        case .noResponse:
+            return "Error Found : Request without response"
+        case .noData:
+            return "Error Found : The data from API is Nil."
+        case .responseStatusCode(code: let code):
+            return "Error Found : Invalid status code - \(code)"
+        case .invalidJSON:
+            return "Error Found : Unable to parse the JSON response"
+        case .alamofireError(description: let description):
+            return "Error Found : Alamofire Error. \(description)"
+            
         }
     }
 }

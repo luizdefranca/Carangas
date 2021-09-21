@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13B67D1DD463098F005C7F20 /* Pods_Carangas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C02A36EC7965BEBA34C979A /* Pods_Carangas.framework */; };
+		251B854926F7DEF200CA1A58 /* AFRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B854826F7DEF200CA1A58 /* AFRest.swift */; };
 		2581D78D2649FCB600D22F04 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581D78C2649FCB600D22F04 /* Car.swift */; };
 		2581D7922649FFB600D22F04 /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581D7912649FFB600D22F04 /* Rest.swift */; };
 		25CF0F7B264DFE0B00482214 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF0F7A264DFE0A00482214 /* RestProtocol.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		251B854826F7DEF200CA1A58 /* AFRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFRest.swift; sourceTree = "<group>"; };
 		2581D78C2649FCB600D22F04 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2581D7912649FFB600D22F04 /* Rest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
 		25CF0F7A264DFE0A00482214 /* RestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProtocol.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				2581D7912649FFB600D22F04 /* Rest.swift */,
 				25CF0F7D264E024300482214 /* RestError.swift */,
 				25CF0F7A264DFE0A00482214 /* RestProtocol.swift */,
+				251B854826F7DEF200CA1A58 /* AFRest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -114,7 +117,6 @@
 				2D59E7C3AD8F22AC77F8B564 /* Pods-Carangas.debug.xcconfig */,
 				C72B272043723256C73A025B /* Pods-Carangas.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -276,6 +278,7 @@
 				25CF0F7B264DFE0B00482214 /* RestProtocol.swift in Sources */,
 				A1B18D191F9C1DBA00313110 /* AddEditViewController.swift in Sources */,
 				A1B18D1B1F9C1DCF00313110 /* CarViewController.swift in Sources */,
+				251B854926F7DEF200CA1A58 /* AFRest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

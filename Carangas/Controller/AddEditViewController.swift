@@ -23,6 +23,8 @@ class AddEditViewController: UIViewController {
 
         return picker
     } ()
+    
+    var connection : RestProtocol!
 
     // MARK: - IBOutlets
     @IBOutlet weak var tfBrand: UITextField!
@@ -36,6 +38,8 @@ class AddEditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        connection = AFRest.shared
         loadBrands()
         addToolBar()
 
@@ -95,14 +99,16 @@ class AddEditViewController: UIViewController {
         startLoadingAnimation()
 
         // new car
-        Rest.save(car: car) { (success) in
-            if success {
+        connection.save(car: car) { result in
+            
+            switch result{
+            case .success():
                 self.goBack()
-            } else {
+            case .failure(let error):
                 // mostrar um erro generico
-                self.showAlert(withTitle: "Adicionar", withMessage: "Não foi possível adicionar o carro.", isTryAgain: true, operation: .add_car)
+                self.showAlert(withTitle: "Failure Saving Car", withMessage: "Não foi possível adicionar o carro.", isTryAgain: true, operation: .add_car)
+                print(error.description)
             }
-
         }
     }
 
@@ -111,12 +117,16 @@ class AddEditViewController: UIViewController {
         startLoadingAnimation()
 
         // 2 - edit current car
-        Rest.update(car: car) { (success) in
-            if success {
+        connection.update(car: car) { result in
+            
+            switch result {
+            case .success():
                 self.goBack()
-            } else {
-                self.showAlert(withTitle: "Editar", withMessage: "Não foi possível editar o carro.", isTryAgain: true, operation: .edit_car)
+            case .failure(let error):
+                self.showAlert(withTitle: "Failure Updating Car", withMessage: "Não foi possível editar o carro.", isTryAgain: true, operation: .edit_car)
+                print(error.description)
             }
+           
         }
     }
 
@@ -134,20 +144,19 @@ class AddEditViewController: UIViewController {
 
     fileprivate func loadBrands() {
 
-        Rest.loadBrands { brands in
-            guard let brands = brands else {return}
-
-            // ascending order
-            self.brands = brands.sorted(by: {$0.fipeName < $1.fipeName})
-
-            DispatchQueue.main.async {
-                self.pickerView.reloadAllComponents()
+        connection.fetchBrands { response  in
+            switch response {
+            case .success(let brands):
+                // ascending order
+                self.brands = brands.sorted(by: {$0.fipeName < $1.fipeName})
+                
+                DispatchQueue.main.async {
+                    self.pickerView.reloadAllComponents()
+                }
+            case .failure(let error):
+                print("\(error.description) \nfile: \(#file) - function: \(#function) - line: \(#line)")
             }
-        } onError: { error in
-
-            print("\(error.description) \nfile: \(#file) - function: \(#function) - line: \(#line)")
         }
-
     }
     fileprivate func goBack() {
         DispatchQueue.main.async {
