@@ -13,6 +13,7 @@
 		2581D7922649FFB600D22F04 /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581D7912649FFB600D22F04 /* Rest.swift */; };
 		25CF0F7B264DFE0B00482214 /* RestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF0F7A264DFE0A00482214 /* RestProtocol.swift */; };
 		25CF0F7E264E024300482214 /* RestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF0F7D264E024300482214 /* RestError.swift */; };
+		25EFF9422705242900F1FB42 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EFF9412705242900F1FB42 /* MenuTableViewController.swift */; };
 		25F48FCB264C757F00276423 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F48FCA264C757F00276423 /* Brand.swift */; };
 		A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B18D041F9C1BDD00313110 /* AppDelegate.swift */; };
 		A1B18D0A1F9C1BDD00313110 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B18D081F9C1BDD00313110 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		2581D7912649FFB600D22F04 /* Rest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
 		25CF0F7A264DFE0A00482214 /* RestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestProtocol.swift; sourceTree = "<group>"; };
 		25CF0F7D264E024300482214 /* RestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestError.swift; sourceTree = "<group>"; };
+		25EFF9412705242900F1FB42 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		25F48FCA264C757F00276423 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		2D59E7C3AD8F22AC77F8B564 /* Pods-Carangas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carangas.debug.xcconfig"; path = "Target Support Files/Pods-Carangas/Pods-Carangas.debug.xcconfig"; sourceTree = "<group>"; };
 		8C02A36EC7965BEBA34C979A /* Pods_Carangas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carangas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B18D181F9C1DBA00313110 /* AddEditViewController.swift */,
+				25EFF9412705242900F1FB42 /* MenuTableViewController.swift */,
 				A1B18D161F9C1D7E00313110 /* CarsTableViewController.swift */,
 				A1B18D1A1F9C1DCF00313110 /* CarViewController.swift */,
 			);
@@ -252,10 +255,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Carangas/Pods-Carangas-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -271,6 +276,7 @@
 			files = (
 				A1B18D171F9C1D7E00313110 /* CarsTableViewController.swift in Sources */,
 				A1B18D051F9C1BDD00313110 /* AppDelegate.swift in Sources */,
+				25EFF9422705242900F1FB42 /* MenuTableViewController.swift in Sources */,
 				2581D78D2649FCB600D22F04 /* Car.swift in Sources */,
 				25CF0F7E264E024300482214 /* RestError.swift in Sources */,
 				2581D7922649FFB600D22F04 /* Rest.swift in Sources */,

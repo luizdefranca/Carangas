@@ -37,6 +37,9 @@ class CarViewController: UIViewController {
         lbBrand.text = car.brand
         lbGasType.text = car.gas
         lbPrice.text = "\(car.price)"
+        aivLoading.startAnimating()
+        aivLoading.hidesWhenStopped = true
+        aivLoading.color = UIColor.init(named: "main")
         showCarOnWebKit()
     }
     fileprivate func showCarOnWebKit() {
@@ -58,12 +61,14 @@ class CarViewController: UIViewController {
 
 } //end CarViewController
 
+ 
 //MARK: - Extensions
 extension CarViewController: WKNavigationDelegate, WKUIDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("stopLoading")
         aivLoading.stopAnimating()
+        
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {

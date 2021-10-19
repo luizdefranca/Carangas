@@ -240,6 +240,51 @@ class Rest //: RestProtocol
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
  func fetchPosts(url: URL, completion: @escaping (Result<[Post],NetworkError>) -> Void) {
 
